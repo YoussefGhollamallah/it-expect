@@ -31,7 +31,7 @@
     * **End-to-End (Playwright):** parcours utilisateur dans un navigateur.
 
 4. Plan de test
-    * Unitaires:
+    * **Unitaires:**
 
     | ID | Fonctionnalité | Étapes | Résultat attendu |
     |----|----------------|--------|------------------|
@@ -40,4 +40,14 @@
     | U3 | Ajout favori en DB | ajoute un favori avec addFavori(1, 123, "film") | Retourne true |
     | U4 | Lecture commentaire par ID | Insérer un commentaire puis utilisé getCommentById(id) | Retourne le contenu |
     | U5 | Vérification route Index | Lire le config du Routeur | Retourne HomeController |
+
+    * **Intégrations**
+
+    | ID | Fonctionnalité | Étapes | Résultat attendu |
+    |----|----------------|--------|------------------|
+    | I1 | Ajout favori via FavorisController | Ajouter puis ré-ajouter le même | 1er OK, 2e erreur |
+    | I2 | Ajout et lecture commentaire | addComment() puis getCommentById() | Texte récupéré |
+    | I3 | Suppression commentaire | deleteCommentByUser()| Commentaire supprimé |
+    | I4 | Routing index.php?page=index | inclure fichier | HTML contenant | Cintech |
+    | I5 | Routing avec une page inconnue | index.php?page=test | Contenu contenant la page 404 |
 
