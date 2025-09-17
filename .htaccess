@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Rediriger les pages de contrôleurs respectives
+RewriteRule ^(index|login|register|film|serie|profile|favori)$ index.php?r=$1 [QSA,L]
+
+# Règle pour les détails de film ou série avec ID et type
+RewriteRule ^detail/([0-9]+)/([a-zA-Z]+)$ index.php?r=detail&id=$1&type=$2 [QSA,L]
+
+# Gérer les actions spécifiques pour film, série, etc.
+RewriteRule ^(film|serie)/action/([a-zA-Z_]+)/([0-9]+)$ index.php?r=$1&action=$2&film_id=$3 [QSA,L]
+
+
+# Redirection vers la page 404 pour les fichiers/dossiers inexistants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ index.php?r=404Erreur [L]

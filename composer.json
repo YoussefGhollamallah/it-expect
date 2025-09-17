@@ -1,0 +1,17 @@
+{
+    "name": "youss/cinetech",
+    "autoload": {
+        "psr-4": {
+            "Youss\\Cinetech\\": "app/",
+            "App\\Classes\\": "classes/",
+            "App\\Controllers\\": "app/controllers/"
+        }
+    },
+    "authors": [
+        {
+            "name": "YoussefGhollamallah",
+            "email": "youssef.gh@live.fr"
+        }
+    ],
+    "require": {}
+}
