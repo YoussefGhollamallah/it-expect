@@ -51,3 +51,9 @@
     | I4 | Routing index.php?page=index | inclure fichier | HTML contenant | Cintech |
     | I5 | Routing avec une page inconnue | index.php?page=test | Contenu contenant la page 404 |
 
+    * Test End-to-End (E2E)
+
+    | ID | Fonctionnalité | Étapes | Résultat attendu |
+    |----|----------------|--------|------------------|
+    | E1 | Parcours home  | Ouvrir la page index | le body contenant l'accueil de cinetech |
+    | E2 | Route inconnue | Allez sur la page test | page afficher 404 |
