@@ -63,7 +63,7 @@ class ModelFavori
 
 public function addFavori(int $userId, int $mediaId, string $type, string $title, ?string $posterPath): bool
 {
-    $query = "INSERT INTO favoris (user_id, element_id, element_type, title, poster_patch) VALUES (:userId, :mediaId, :type, :title, :posterPath)";
+    $query = "INSERT INTO favoris (user_id, element_id, element_type, title, poster_path) VALUES (:userId, :mediaId, :type, :title, :posterPath)";
     $stmt = $this->connexion->prepare($query);
     return $stmt->execute([
         'userId' => $userId,

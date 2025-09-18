@@ -15,16 +15,15 @@ class ModelCommentaire
         $this->connexion->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function addComment($content, $id_user, $id_media)
+    public function addComment($content, $id_user, $id_media): bool
     {
         try {
-            $query = "INSERT INTO commentaire (content, id_media, id_user, created_at) VALUES (?, ?, ?, NOW())";
-            $result = $this->connexion->prepare($query);
-            $result->execute([$content, $id_media, $id_user]);
-            return 'Commentaire ajouté avec succès.';
+            $query = "INSERT INTO commentaire (content, id_media, id_user, created_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP)";
+            $stmt = $this->connexion->prepare($query);
+            return $stmt->execute([$content, $id_media, $id_user]);
         } catch (\PDOException $e) {
             error_log("Erreur lors de l'ajout du commentaire : " . $e->getMessage());
-            throw new \Exception("Erreur lors de l'ajout du commentaire.");
+            return false;
         }
     }
 
@@ -45,16 +44,16 @@ class ModelCommentaire
         }
     }
 
-    public function deleteCommentByUser($id_commentaire, $id_user)
+    public function deleteCommentByUser($id_commentaire, $id_user): bool
     {
         try {
             $query = "DELETE FROM commentaire WHERE id_commentaire = :id_commentaire AND id_user = :id_user";
-            $result = $this->connexion->prepare($query);
-            $result->execute(['id_commentaire' => $id_commentaire, 'id_user' => $id_user]);
-            return 'Commentaire supprimé avec succès.';
+            $stmt = $this->connexion->prepare($query);
+            $stmt->execute(['id_commentaire' => $id_commentaire, 'id_user' => $id_user]);
+            return $stmt->rowCount() > 0;
         } catch (\PDOException $e) {
             error_log("Erreur lors de la suppression du commentaire : " . $e->getMessage());
-            throw new \Exception("Erreur lors de la suppression du commentaire.");
+            return false;
         }
     }
 
