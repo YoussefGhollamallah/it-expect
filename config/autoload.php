@@ -12,19 +12,22 @@ class Autoload
             }
         });
         
-        $root = $_SERVER['DOCUMENT_ROOT'];
-        $host = $_SERVER['HTTP_HOST'];
+    $root = $_SERVER['DOCUMENT_ROOT'] ?? getcwd();
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
-        define("HOST", "http://" . $host . "/cinetech/");
-        define('ROOT', $root . '/cinetech/');
-        define("BASE_URL", "/cinetech/");
+    // Détermine le chemin racine du projet quand exécuté en CLI
+    $projectRoot = is_dir($root . '/cinetech') ? ($root . '/cinetech/') : (realpath(__DIR__ . '/..') . DIRECTORY_SEPARATOR);
 
-        define("CONTROLLER", ROOT . 'app/controllers/');
-        define("MODEL", ROOT . 'app/models/');
-        define("VIEW", ROOT . 'app/views/');
-        define("CLASSES", ROOT . 'classes/');
-        define("ASSETS", HOST . 'src/');
-        define("config", ROOT . 'config/');
+    if (!defined('HOST'))      define('HOST', "http://" . $host . "/cinetech/");
+    if (!defined('ROOT'))      define('ROOT', $projectRoot);
+    if (!defined('BASE_URL'))  define('BASE_URL', "/cinetech/");
+
+    if (!defined('CONTROLLER')) define('CONTROLLER', ROOT . 'app/controllers/');
+    if (!defined('MODEL'))      define('MODEL', ROOT . 'app/models/');
+    if (!defined('VIEW'))       define('VIEW', ROOT . 'app/views/');
+    if (!defined('CLASSES'))    define('CLASSES', ROOT . 'classes/');
+    if (!defined('ASSETS'))     define('ASSETS', HOST . 'src/');
+    if (!defined('config'))     define('config', ROOT . 'config/');
 
     }
 

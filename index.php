@@ -7,11 +7,8 @@ use App\Classes\Routeur;
 
 Autoload::start();
 
-if (isset($_GET['r'])) {
-    $request = $_GET['r'];
-} else {
-    $request = 'index'; // Par défaut, redirige vers la page d'accueil
-}
+// Supporte ?page=... (utilisé par les tests) et ?r=..., sinon 'index'
+$request = $_GET['page'] ?? ($_GET['r'] ?? 'index');
 
 $routeur = new Routeur($request);
 $routeur->renderController();
