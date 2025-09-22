@@ -57,3 +57,17 @@
     |----|----------------|--------|------------------|
     | E1 | Parcours home  | Ouvrir la page index | le body contenant l'accueil de cinetech |
     | E2 | Route inconnue | Allez sur la page test | page afficher 404 |
+
+
+## RAPPORT DE TEST
+
+### 1. Tests Unitaire (PHPUnit)
+
+| ID | Fonctionnalité | Étapes | Résultat attendu | Résultat obtenu | Statut | Commentaires |
+|---|----------------|---------|-----|------|---------|---------|
+| U1 | Vérification d'email existant | Appeler un email existant | Retourne true | Retourne true | ✅ OK | RAS |
+| U2 | Vérification d'email absent | Appeler un email non présent | Retourne False | Retourne False | ✅ OK | RAS |
+| U3 | Ajout favori en DB | addFavori() | Retourne True | Retourne True | ✅ OK | RAS |
+| U4 | Lecture commentaire par ID | Insérer puis récupérer | Retourne le contenu du commentaire | Retourne le bon contenu | ✅ OK | RAS |
+| U5 | Vérification route Index | Retourne HomeController | Retourne HomeController | ✅ OK | RAS |
+
